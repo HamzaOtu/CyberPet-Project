@@ -369,8 +369,22 @@ switch (eats)
     static void callBattleships()
     {
         Battleship battleships = new Battleship();
-        battleships.BattleShips(myPet);
-            
+        battleships.BattleShips();
+        bool res = battleships.CheckGameStatus();
+        if (res == true)
+        {
+            myPet.tiredness += 20;
+            myPet.hunger -= 30;
+            myPet.loyalty += 30;
+            myPet.happiness += 30;
+        }
+        else if (res == false)
+        {
+            myPet.tiredness += 40;
+            myPet.hunger -= 50;
+            myPet.loyalty += 10;
+            myPet.happiness += 20;
+        }
     }
 
     static void NumberGuess(Pet myPet)

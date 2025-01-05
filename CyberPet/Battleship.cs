@@ -14,19 +14,17 @@ class Battleship
     public static List<string> aihit = new List<string>();
     public static List<string> phit = new List<string>();
     public static int amount;
-    private Pet myPet;
 
-    public void BattleShips(Pet myPet)
+    public void BattleShips()
     {
         ChangeGrid();
         Welcome();
         PlaceShip();
         GameLoop();
-        this.myPet = myPet;
 
     }
 
-    public static void Welcome()
+    public void Welcome()
     {
         Console.WriteLine("                              Welcome to Battleships!");
         Console.WriteLine("                                  .                   .\r\n                              _..-''\"\"\"\\          _.--'\"\"\"\\\r\n                              |         L         |        \\\r\n                  _           / _.-.---.\\.        / .-.----.\\\r\n                _/-|---     _/<\"---'\"\"\"\"\"\\\\`.    /-'--''\"\"\"\"\"\\\r\n               |       \\     |            L`.`-. |            L\r\n               /_.-.---.L    |            \\  \\  `|            J`.\r\n             _/--'\"\"\"\"  \\    F            \\L  \\  |             L\r\n               L      `. L  J  _.---.-\"\"\"-.\\`. L_/ _.--|\"\"\"\"\"--.\\ `.\r\n               |        \\+. /-\"__.--'\"\"\"\"   \\ `./'\"---'\"\"\"\"\"\"   \\`. `.\r\n               F   _____ \\ `F\"        `.     \\  \\                L `.\r\n              /.-'\"_|---'\"\\ |           `    JL |                 L  `.`.\r\n             <-'\"\"         \\|    _.-.------._ A J    _.-.-----`.--|   ``.`.\r\n              L         `. |/.-'\"_.-`---'\"\"\\.\"| /-'\"---'\"\"\"\"\"   \\`.\\.  \\ `.`.\r\n              |  _.------\\.<'\"\"\"            L\\ L\\                `.`\\`. \\  `.\r\n         _.-'//'\"--'\"\"\"   L\\|       ________\\ `.F     ___.-------._L \\ `-\\   \\`.\r\n        /___| F             F _.--'\"_|-------L  /_.-'\"_.-|-'\"\"\"\"\"\"\"\\  L   L   `.`.\r\n            | F  _.-'|\"\"\"\"\"/'\"-'\"\"\"          J <'\"\"\"                L J   |     `.`.\r\n            |/-'-''/|\"\"\\ )-|\\                 F \\                   |  L .'\"\"\"`\\\"\"-\\\\_\r\n             F`-'-'-(`-')  | \\                F  \\                  |___`\"\"\"`.\"\"`.-'\"\r\n------------/        `-'---|  F               L   L             __     |\"\"\"\"\"`-'\"__________\r\n          .'_         |    |__L          __  J__  |    _.--'\"\"\"\"   `\".----'\".'\r\n         '\"\"\"\"\"\"\"\"\"\"\"\"|--._+--F _.-'\"\"||\"   \"\"\"___/.-'\"   ||-'\"/\"\"\"\"\" \\_. .'\r\n         J------------(___\\__/'_____.--------'-------'\"\"\"\"\"\"\"\"           /\r\n         `-.                                        _.__.__.__.____     J_.-._\r\n    .'`-._ (-`--`---.'--._`---._.-'`-._.-'_.-'``-._'               `-''-'\r\n\r\n------------------------------------------------\r\n");
@@ -43,7 +41,7 @@ class Battleship
         }
     }
 
-    public static void PlaceShip()
+    public void PlaceShip()
     {
         battleships = amount;
 
@@ -126,12 +124,12 @@ class Battleship
             }
 
             AIAttack();
-            CheckGameStatus(myPet);
+            CheckGameStatus();
         }
     }
 
 
-    public static void ChangeGrid()
+    public void ChangeGrid()
     {
         for (int j = 0; j < 10; j++)
         {
@@ -156,7 +154,7 @@ class Battleship
         }
     }
 
-    public static void Displayhit()
+    public void Displayhit()
     {
         Console.WriteLine("Y X 0  1  2  3  4  5  6  7  8  9");
         for (int j = 0; j < 10; j++)
@@ -170,7 +168,7 @@ class Battleship
         }
     }
 
-    public static void ExecuteAttack()
+    public void ExecuteAttack()
     {
         for (int a = 1; a < 2; a++)
         {
@@ -397,8 +395,9 @@ class Battleship
 
     }
 
-    public static void CheckGameStatus(Pet myPet)
+    public bool CheckGameStatus()
     {
+        bool b = false;
         if (battleships == 0)
         {
             Console.Clear();
@@ -408,10 +407,7 @@ class Battleship
             Console.WriteLine("Ai doesn't have any battleships left");
             Console.ReadKey();
             Console.ReadLine();
-            myPet.tiredness += 20;
-            myPet.happiness += 40;
-            myPet.hunger -= 20;
-            myPet.loyalty += 40;
+            b = true;
         }
         else if (b_left == 0)
         {
@@ -422,10 +418,8 @@ class Battleship
             Console.WriteLine("You don't have any battleships left");
             Console.ReadKey();
             Console.ReadLine();
-            myPet.tiredness += 40;
-            myPet.happiness += 20;
-            myPet.hunger -= 40;
-            myPet.loyalty += 20;
+            b = false;
         }
+        return b;
     }
 }
