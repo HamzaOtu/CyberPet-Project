@@ -1,27 +1,32 @@
 ﻿class Pet
 {
-    public int Age { get; set; }
-    public int Hunger { get; set; }
-    public int Happiness { get; set; }
-    public int Loyalty { get; set; }
-    public bool Alive { get; set; }
-    public int Fatness { get; set; }
-    public bool Obesity { get; set; }
-    public int Tiredness { get; set; }
+    public int age { get; set; }
+    public int hunger { get; set; }
+    public int happiness { get; set; }
+    public int loyalty { get; set; }
+    public bool alive { get; set; }
+    public int fatness { get; set; }
+    public bool obesity { get; set; }
+    public int tiredness { get; set; }
     public int rounds { get; set; }
-    public int obesity_rounds { get; set; }
-    public int hunger_rounds { get; set; }
-    public int tiredness_rounds { get; set; }
+    public int obesityRounds { get; set; }
+    public int hungerRounds { get; set; }
+    public int tirednessRounds { get; set; }
 
     public Pet()
     {
-        Age = 0;
-        Hunger = 50;
-        Happiness = 20;
-        Alive = true;
-        Loyalty = 10;
-        Fatness = 20;
-        Obesity = false;
-        Tiredness = 0;
+        initializePet();
+    }
+
+    private void initializePet()
+    {
+        this.age = 0;
+        this.hunger = 50;
+        this.happiness = 20;
+        this.alive = true;
+        this.loyalty = 10;
+        this.fatness = 20;
+        this.obesity = false;
+        this.tiredness = 0;
     }
 }

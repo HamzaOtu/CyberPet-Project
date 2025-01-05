@@ -408,10 +408,10 @@ class Battleship
             Console.WriteLine("Ai doesn't have any battleships left");
             Console.ReadKey();
             Console.ReadLine();
-            myPet.Tiredness += 20;
-            myPet.Happiness += 40;
-            myPet.Hunger -= 20;
-            myPet.Loyalty += 40;
+            myPet.tiredness += 20;
+            myPet.happiness += 40;
+            myPet.hunger -= 20;
+            myPet.loyalty += 40;
         }
         else if (b_left == 0)
         {
@@ -422,10 +422,10 @@ class Battleship
             Console.WriteLine("You don't have any battleships left");
             Console.ReadKey();
             Console.ReadLine();
-            myPet.Tiredness += 40;
-            myPet.Happiness += 20;
-            myPet.Hunger -= 40;
-            myPet.Loyalty += 20;
+            myPet.tiredness += 40;
+            myPet.happiness += 20;
+            myPet.hunger -= 40;
+            myPet.loyalty += 20;
         }
     }
 }
