@@ -24,7 +24,7 @@
         this.hunger = 50;
         this.happiness = 20;
         this.alive = true;
-        this.loyalty = 10;
+        this.loyalty = 15;
         this.fatness = 20;
         this.obesity = false;
         this.tiredness = 0;

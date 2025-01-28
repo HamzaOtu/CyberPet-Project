@@ -17,13 +17,14 @@ class Program
 
         if (type == "PANDA" || type == "1")
         {
-            myPet = new PANDA { Name = name, Size = size, Colour = colour };
-            art = "     (()__(()\r\n     /       \\ \r\n    ( /    \\  \\\r\n     \\ o o    /\r\n     (_()_)__/ \\             \r\n    / _,==.____ \\\r\n   (   |--|      )\r\n   /\\_.|__|'-.__/\\_\r\n  / (        /     \\ \r\n  \\  \\      (      /\r\n   )  '._____)    /    \r\n(((____.--(((____/mrf";
+            myPet = new PANDA { Name = name, Size = size, Colour = colour }; 
+            art = "     (()__(()\r\n     /       \\ \r\n    ( /    \\  \\\r\n     \\ o o    /\r\n     (_()_)__/ \\             \r\n    / _,==.____ \\\r\n   (   |--|      )\r\n   /\\_.|__|'-.__/\\_\r\n  / (        /     \\ \r\n  \\  \\      (      /\r\n   )  '._____)    /    \r\n(((____.--(((____/";
+
         }
         else if (type == "DOG" || type == "2")
         {
             myPet = new PUPPY { Name = name, Size = size, Colour = colour };
-            art = "    ___\r\n __/_  `.  .-\"\"\"-.\r\n \\_,` | \\-'  /   )`-')\r\n  \"\") `\"`    \\  ((`\"`\r\n ___Y  ,    .'7 /|\r\n(_,___/...-` (_/_/ sk";
+            art = "    ___\r\n __/_  `.  .-\"\"\"-.\r\n \\_,` | \\-'  /   )`-')\r\n  \"\") `\"`    \\  ((`\"`\r\n ___Y  ,    .'7 /|\r\n(_,___/...-` (_/_/ ";
         }
         else if (type == "CAT" || type == "3")
         {
@@ -35,6 +36,7 @@ class Program
         {
             myPet.alive = true;
             Console.WriteLine($"You created a {myPet.GetType().Name} named {((dynamic)myPet).Name}, a {((dynamic)myPet).Colour} {myPet.GetType().Name}, with size {((dynamic)myPet).Size}.");
+            Console.ReadLine();
         }
         else
         {
@@ -54,95 +56,96 @@ class Program
             Console.WriteLine("What do you want to do?\n1. Feed\n2. Play\n3. Sleep\n4. Pass");
             string decision = Console.ReadLine().ToUpper();
             Decision(decision, myPet);
-            Check(myPet);
+            callCheckStatus();
+            callEvents();
             myPet.rounds += 1;
         }
     }
 
-static void Feed(Pet myPet)
-{
-Console.WriteLine("What do you want to feed them?\n1. Burger hunger:50 fatness:30 loyalty:5 happiness:20\n2. Pizza hunger:40 fatness:20 loyalty:0 happiness:10\n3. Carrot hunger:20 fatness:0 loyalty:-20 happiness:-15\n4. Milk hunger:15 fatness:5 loyalty:-15 happiness:-25\n5. Cookie hunger:5 fatness:15 loyalty:30 happiness:25\n6. Bamboo hunger:5 fatness:5 loyalty:10 happiness:10");
-string eats = Console.ReadLine()?.ToUpper(); // Taking input and ensuring it's uppercase
-myPet.tiredness += 30;
-
-switch (eats)
+    static void Feed(Pet myPet)
     {
-    case "1":
-    case "BURGER":
-        myPet.hunger += 50;
-        myPet.fatness += 30;
-        myPet.loyalty += 5;
-        myPet.happiness += 20;
-        Console.WriteLine("You fed the pet a Burger!");
-        Console.ReadLine();
-        break;
+        Console.WriteLine("What do you want to feed them?\n1. Burger hunger:50 fatness:30 loyalty:5 happiness:20\n2. Pizza hunger:40 fatness:20 loyalty:0 happiness:10\n3. Carrot hunger:20 fatness:0 loyalty:-20 happiness:-15\n4. Milk hunger:15 fatness:5 loyalty:-15 happiness:-25\n5. Cookie hunger:5 fatness:15 loyalty:30 happiness:25\n6. Bamboo hunger:5 fatness:5 loyalty:10 happiness:10");
+        string eats = Console.ReadLine()?.ToUpper(); // Taking input and ensuring it's uppercase
+        myPet.tiredness += 30;
 
-    case "2":
-    case "PIZZA":
-        myPet.hunger += 40;
-        myPet.fatness += 20;
-        myPet.loyalty += 0;
-        myPet.happiness += 10;
-        Console.WriteLine("You fed the pet a Pizza!");
-        Console.ReadLine();
-        break;
+        switch (eats)
+        {
+            case "1":
+            case "BURGER":
+                myPet.hunger += 50;
+                myPet.fatness += 30;
+                myPet.loyalty += 5;
+                myPet.happiness += 20;
+                Console.WriteLine("You fed the pet a Burger!");
+                Console.ReadLine();
+                break;
 
-    case "3":
-    case "CARROT":
-        myPet.hunger += 20;
-        myPet.fatness += 0;
-        myPet.loyalty -= 20;
-        myPet.happiness -= 15;
-        Console.WriteLine("You fed the pet a Carrot!");
-        Console.ReadLine();
-        break;
+            case "2":
+            case "PIZZA":
+                myPet.hunger += 40;
+                myPet.fatness += 20;
+                myPet.loyalty += 0;
+                myPet.happiness += 10;
+                Console.WriteLine("You fed the pet a Pizza!");
+                Console.ReadLine();
+                break;
 
-    case "4":
-    case "MILK":
-        myPet.hunger += 15;
-        myPet.fatness += 5;
-        myPet.loyalty -= 15;
-        myPet.happiness -= 25;
-        Console.WriteLine("You fed the pet Milk!");
-        Console.ReadLine();
-        break;
+            case "3":
+            case "CARROT":
+                myPet.hunger += 20;
+                myPet.fatness += 0;
+                myPet.loyalty -= 20;
+                myPet.happiness -= 15;
+                Console.WriteLine("You fed the pet a Carrot!");
+                Console.ReadLine();
+                break;
 
-    case "5":
-    case "COOKIE":
-            myPet.hunger += 5;
-            myPet.fatness += 15;
-            myPet.loyalty += 30;
-            myPet.happiness += 25;
-            myPet.alive = false;
-            Console.WriteLine("You fed the pet Cookie!, but its poisionus for them so they died :(");
-            Console.ReadLine();
-            break;
-    case "6":
-    case "BAMBOO":
-            if (myPet.GetType().Name == "PANDA")
+            case "4":
+            case "MILK":
+                myPet.hunger += 15;
+                myPet.fatness += 5;
+                myPet.loyalty -= 15;
+                myPet.happiness -= 25;
+                Console.WriteLine("You fed the pet Milk!");
+                Console.ReadLine();
+                break;
+
+            case "5":
+            case "COOKIE":
+                myPet.hunger += 5;
+                myPet.fatness += 15;
+                myPet.loyalty += 30;
+                myPet.happiness += 25;
+                myPet.alive = false;
+                Console.WriteLine("You fed the pet Cookie!, but its poisionus for them so they died :(");
+                Console.ReadLine();
+                break;
+            case "6":
+            case "BAMBOO":
+                if (myPet.GetType().Name == "PANDA")
                 {
                     myPet.hunger += 20;
                     myPet.fatness += 5;
                     myPet.loyalty += 30;
                     myPet.happiness += 40;
                 }
-            else
+                else
                 {
                     myPet.hunger += 5;
                     myPet.fatness += 5;
                     myPet.loyalty += 10;
                     myPet.happiness += 10;
                 }
-            Console.WriteLine("You fed the pet Bamboo!");
-            Console.ReadLine();
-            break;
+                Console.WriteLine("You fed the pet Bamboo!");
+                Console.ReadLine();
+                break;
 
 
-    default:
-        Console.WriteLine("Invalid choice! Please choose a valid option.");
-        break;
+            default:
+                Console.WriteLine("Invalid choice! Please choose a valid option.");
+                break;
+        }
     }
-}
 
     static void Sleep(Pet myPet)
     {
@@ -191,21 +194,24 @@ switch (eats)
 
     static void Play(Pet myPet)
     {
-        Console.WriteLine("Which game do you want to play?\n1. NumberGuess\n2. Battleships");
+        Console.WriteLine("Which game do you want to play?\n1. NumberGuess\n2. Battleships\n3. TicTacToe");
         string play = Console.ReadLine().ToUpper();
         switch (play)
         {
             case "1" or "NUMBERGUESS":
-                NumberGuess(myPet);
+                callNumberGuess();
                 break;
             case "2" or "BATTLESHIPS":
                 callBattleships();
                 break;
+            case "3" or "TICTACTOE":
+                callTicTacToe();
+                break;
         }
+        
+    } 
 
-    }
-
-    static void Decision(string decision,Pet myPet)
+    static void Decision(string decision, Pet myPet)
     {
         switch (decision)
         {
@@ -219,150 +225,21 @@ switch (eats)
                 Sleep(myPet);
                 break;
             case "4" or "PASS":
-
+                break;
+            case "666":
+                RandomEvents events = new RandomEvents();
+                bool kidnapped = events.Kidnapped(myPet, 9);
+                if (kidnapped)
+                {
+                    Console.WriteLine("You never came back from hell, what a shame.");
+                    myPet.alive = false;
+                }
                 break;
             default:
+                myPet.rounds -= 1;
                 Console.WriteLine("That option doesnt exist.");
+                Console.ReadLine();
                 break;
-        }
-    }
-    static void Check(Pet myPet)
-    {
-        if (myPet.tiredness > 100)
-        {
-            myPet.tiredness = 100;
-        }
-        else if (myPet.tiredness < 0)
-        {
-            myPet.tiredness = 0;
-        }
-        if (myPet.hunger > 100)
-        {
-            myPet.hunger = 100;
-        }
-        else if (myPet.hunger < 0)
-        {
-            myPet.hunger = 0;
-        }
-        if (myPet.loyalty > 100)
-        {
-            myPet.loyalty = 100;
-        }
-        else if (myPet.loyalty < 0)
-        {
-            myPet.loyalty = 0;
-        }
-        if (myPet.fatness > 100)
-        {
-            myPet.fatness = 100;
-        }
-        else if (myPet.fatness < 0)
-        {
-            myPet.fatness = 0;
-        }
-        if (myPet.happiness > 100)
-        {
-            myPet.happiness = 100;
-        }
-        else if (myPet.happiness < 0)
-        {
-            myPet.happiness = 0;
-        }
-        if (myPet.fatness > 80)
-        {
-            myPet.obesity = true;
-            Console.WriteLine("Your pet is obese make them work out!");
-            Console.ReadLine();
-        }
-        if (myPet.rounds == 5)
-        {
-            myPet.rounds = 0;
-            myPet.age += 1;
-        }
-        if (myPet.age > 30)
-        {
-            Random random = new Random();
-            int survive = random.Next(100);
-            if (survive > 10)
-            {
-                myPet.alive = false;
-                Console.WriteLine("Your pet died of old age :(");
-                Console.ReadLine();
-            }
-        }
-        if (myPet.age > 25)
-        {
-            Random random = new Random();
-            int survive = random.Next(100);
-            if (survive > 30)
-            {
-                myPet.alive = false;
-                Console.WriteLine("Your pet died of old age :(");
-                Console.ReadLine();
-            }
-        }
-        if (myPet.age > 20)
-        {
-            Random random = new Random();
-            int survive = random.Next(100);
-            if (survive > 65)
-            {
-                myPet.alive = false;
-                Console.WriteLine("Your pet died of old age :(");
-                Console.ReadLine();
-            }
-        }
-        if (myPet.age > 16)
-        {
-            Random random = new Random();
-            int survive = random.Next(100);
-            if (survive > 90)
-            {
-                myPet.alive = false;
-                Console.WriteLine("Your pet died of old age :(");
-                Console.ReadLine();
-            }
-        }
-        if (myPet.age > 12)
-        {
-            Random random = new Random();
-            int survive = random.Next(100);
-            if (survive == 100)
-            {
-                myPet.alive = false;
-                Console.WriteLine("Your pet died of old age :(");
-                Console.ReadLine();
-            }
-        }     
-        if (myPet.obesity == true)
-        {
-            myPet.obesityRounds += 1;
-        }
-        if (myPet.obesityRounds == 5)
-        {
-            myPet.alive = false;
-            Console.WriteLine("Your pet died of obesity, you didnt look after him :(");
-            Console.ReadLine();
-        }
-        if (myPet.hunger < 20)
-        {
-            myPet.hungerRounds += 1;
-        }
-        if (myPet.hungerRounds == 5)
-        {
-            myPet.alive = false;
-            Console.WriteLine("Your pet starved to death, you didnt look after him :(");
-            Console.ReadLine();
-        }
-        if (myPet.tiredness > 80)
-        {
-            myPet.tirednessRounds += 1;
-        }
-        if (myPet.tirednessRounds == 5)
-        {
-            myPet.alive = false;
-            Console.WriteLine("Your pet overworked, you didnt look after him :(");
-            Console.ReadLine();
         }
     }
 
@@ -377,6 +254,7 @@ switch (eats)
             myPet.hunger -= 30;
             myPet.loyalty += 30;
             myPet.happiness += 30;
+            myPet.fatness -= 30;
         }
         else if (res == false)
         {
@@ -384,54 +262,49 @@ switch (eats)
             myPet.hunger -= 50;
             myPet.loyalty += 10;
             myPet.happiness += 20;
+            myPet.fatness -= 10;
         }
     }
 
-    static void NumberGuess(Pet myPet)
+    static void callTicTacToe()
     {
-        int guesses = 0;
-        Random random = new Random();
-        int number = random.Next(10);
-        for (int i = 0; i < 1; i++)
+        TicTacToe tictac = new TicTacToe();
+        tictac.Game();
+        string res = tictac.CheckWinner();
+        if (res == "Player")
         {
-            Console.WriteLine("Guess a number between 0-9");
-            int guess = Convert.ToInt16(Console.ReadLine());
-            if (guesses < 2)
-            {
-                if (guess == number)
-                {
-                    Console.WriteLine("You guessed it correct!");
-                    Console.ReadLine();
-                    myPet.tiredness += 20;
-                    myPet.loyalty += 20;
-                    myPet.hunger -= 20;
-                    myPet.happiness += 30;
-                }
-                else
-                {
-                    Console.WriteLine("You guessed it wrong!");
-                    i--;
-                    myPet.tiredness += 15;
-                    myPet.loyalty += 5;
-                    myPet.hunger -= 15;
-                    myPet.happiness += 5;
-                    guesses ++;
-                    Console.WriteLine($"Guesses left: {3 - guesses}");
-                    if (guess > number)
-                    {
-                        Console.WriteLine("Your guess was too high!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Your guess was too low");
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine($"You ran out of guesses!\nCorrect number was {number}!");
-                Console.ReadLine();
-            }
+            myPet.tiredness += 20;
+            myPet.hunger -= 30;
+            myPet.loyalty += 30;
+            myPet.happiness += 30;
+            myPet.fatness -= 30;
         }
+        else if (res == "Tie")
+        {
+            myPet.tiredness += 40;
+            myPet.hunger -= 50;
+            myPet.loyalty += 10;
+            myPet.happiness += 20;
+            myPet.fatness -= 10;
+        }
+    }
+
+    static void callNumberGuess()
+    {
+        NumberGuess numberguess = new NumberGuess();
+        numberguess.NumberGuessing(myPet);
+    }
+
+    static void callCheckStatus()
+    {
+        CheckStatus checkstatus = new CheckStatus();
+        checkstatus.Check(myPet);
+    }
+    
+    static void callEvents()
+    {
+        CheckStatus checkstatus = new CheckStatus();
+        checkstatus.callMethods(myPet);
+        Console.ReadLine();
     }
 }
